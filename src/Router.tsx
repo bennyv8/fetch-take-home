@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import DefaultLayout from "./layouts/DefaultLayout";
-import LoginPage from "./pages/login/LoginPage";
+import { DefaultLayout } from "./layouts/index";
+import * as pages from "./pages/index";
 
 const router = createBrowserRouter([
   {
@@ -10,19 +10,19 @@ const router = createBrowserRouter([
       //TODO add homepage
       {
         path: "/login",
-        element: <LoginPage />,
+        element: <pages.LoginPage />,
       },
       {
         path: "search",
-        element: <div>find dogs</div>,
+        element: <pages.SearchPage />,
       },
       {
         path: "favorites",
-        element: <div>favorites page</div>,
+        element: <pages.FavoritesPage />,
       },
       {
         path: "match",
-        element: <div>Match!</div>,
+        element: <pages.MatchPage />,
       },
       {
         path: "*",

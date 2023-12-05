@@ -1,5 +1,6 @@
 import { useState, ChangeEvent } from "react";
-import Input from "../../components/inputs/index";
+import { Input } from "../../components/index";
+import { fetchEndpoint } from "../../uitls";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -18,13 +19,20 @@ const LoginPage = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
+    const res = fetchEndpoint("/auth/login", "POST", JSON.stringify(formData));
+    if (res == null) {
+      console.log("handle invalid login if needed");
+    } else {
+      console.log("success");
+    }
   };
 
   return (
     //CONTAINER
-    <div className="fixed h-screen w-screen bg-blue-100">
+    <div>
+      <div className="fixed h-screen w-screen bg-blue-100"></div>
       <div className="mx-auto my-8 flex max-w-lg translate-y-1/2 flex-col items-center bg-blue-500 p-6">
-        <h1 className="font-Bold mb-4 text-4xl">Login</h1>
+        <h1 className="mb-4 text-4xl font-bold">Login</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
