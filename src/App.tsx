@@ -1,10 +1,13 @@
 import router from "./Router";
+import { FavoritesProvider } from "./contexts/index";
 import { RouterProvider } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <FavoritesProvider>
+        <RouterProvider router={router} />
+      </FavoritesProvider>
     </>
   );
 }

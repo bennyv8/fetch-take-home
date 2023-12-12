@@ -5,12 +5,18 @@ import useParams from "./useParams";
 
 interface SearchProvider extends PropsWithChildren {}
 
-interface ContextValueProps {
+interface SearchContextValueProps {
   params: URLSearchParams;
-  addParams: (breed: string) => void;
+  addParams: (key: string, value: string) => void;
 }
 
-const SearchContext = createContext<ContextValueProps | null>(null);
+//default values
+const SearchContext = createContext<SearchContextValueProps>({
+  params: new URLSearchParams(),
+  addParams: () => {
+    console.log("out of scope");
+  },
+});
 
 const SearchProvider = ({ children }: SearchProvider) => {
   const contextValue = useParams();
@@ -22,4 +28,4 @@ const SearchProvider = ({ children }: SearchProvider) => {
   );
 };
 
-export default SearchProvider;
+export { SearchProvider, SearchContext };

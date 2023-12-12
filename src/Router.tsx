@@ -21,10 +21,6 @@ const router = createBrowserRouter([
         element: <pages.FavoritesPage />,
       },
       {
-        path: "match",
-        element: <pages.MatchPage />,
-      },
-      {
         path: "*",
         element: <div>error 404</div>,
       },

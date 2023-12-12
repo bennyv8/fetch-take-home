@@ -1,1 +1,5 @@
-export { default as SearchContext } from "./SearchContext/SearchContext";
+export { SearchContext, SearchProvider } from "./SearchContext/SearchContext";
+export {
+  FavoritesContext,
+  FavoritesProvider,
+} from "./FavoritesContext/FavoritesContext";

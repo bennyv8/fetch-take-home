@@ -3,9 +3,9 @@ import { useState } from "react";
 const useParams = () => {
   const [params, setParams] = useState(new URLSearchParams());
 
-  const addParams = (breed: string) => {
+  const addParams = (key: string, value: string) => {
     const newParams = new URLSearchParams(params.toString());
-    newParams.append("breed", breed);
+    newParams.append(key, value);
     setParams(newParams);
   };
 

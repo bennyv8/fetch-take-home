@@ -1,12 +1,14 @@
 import { useState, ChangeEvent } from "react";
 import { Input } from "../../components/index";
 import { fetchEndpoint } from "../../uitls";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
   });
+  const navigate = useNavigate();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -16,19 +18,23 @@ const LoginPage = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
-    const res = fetchEndpoint("/auth/login", "POST", JSON.stringify(formData));
-    if (res == null) {
+    const res = await fetchEndpoint(
+      "/auth/login",
+      "POST",
+      JSON.stringify(formData),
+    );
+    if (res === null) {
       console.log("handle invalid login if needed");
     } else {
       console.log("success");
+      navigate("/search");
     }
   };
 
   return (
-    //CONTAINER
     <div>
       <div className="fixed h-screen w-screen bg-blue-100"></div>
       <div className="mx-auto my-8 flex max-w-lg translate-y-1/2 flex-col items-center bg-blue-500 p-6">
